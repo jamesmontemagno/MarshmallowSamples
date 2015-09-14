@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World, Click Me!</string>
+    <string name="Navigation">Click to Navigate</string>
+    <string name="ApplicationName">VoiceCamera</string>
+    <string name="search_hint">Hint</string>
+    <string name="app_label">VoiceCamera</string>
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="title_activity_debugging">DebuggingActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_share">ShareActivity</string>
+</resources>
