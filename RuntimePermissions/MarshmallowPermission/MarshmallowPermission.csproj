@@ -44,12 +44,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Geolocator.Plugin">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="Geolocator.Plugin.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.2\lib\MonoAndroid10\Geolocator.Plugin.Abstractions.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.0.0.0-rc1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -58,6 +52,12 @@
     </Reference>
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\packages\Xamarin.Android.Support.Design.22.2.1.0\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.4\lib\MonoAndroid10\Geolocator.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Geolocator.Plugin.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.1.0.4\lib\MonoAndroid10\Geolocator.Plugin.Abstractions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -69,8 +69,8 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
-    <None Include="PluginsHelp\GeolocatorReadme.txt" />
     <None Include="packages.config" />
+    <None Include="PluginsHelp\GeolocatorReadme.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
