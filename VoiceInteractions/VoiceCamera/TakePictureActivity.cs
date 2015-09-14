@@ -17,10 +17,9 @@ using Android.Util;
 
 namespace VoiceCamera
 {
-    [Activity(Label = "VoiceCamera", LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]  
-    [IntentFilter(new []{"android.media.action.IMAGE_CAPTURE"}, Label = "VoiceCamera", Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
-    [IntentFilter(new []{"android.media.action.STILL_IMAGE_CAMERA"}, Label = "VoiceCamera", Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
-
+    [Activity(Label = "Voice Camera", LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]  
+    [IntentFilter(new []{MediaStore.ActionImageCapture}, Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
+    [IntentFilter(new []{MediaStore.ActionImageCaptureSecure}, Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
     public class VoiceActivity : BaseActivity
     {
 
@@ -93,29 +92,59 @@ namespace VoiceCamera
                 };
         }
 
-        protected override void OnResume()
+protected override void OnResume()
+{
+    base.OnResume();
+    if (!IsVoiceInteraction)
+        return;
+
+    //Send our our first request asking for front or rear facing camera to use.
+    var front = new VoiceInteractor.PickOptionRequest.Option("Front Camera", 0);
+    front.AddSynonym("Front");
+    front.AddSynonym("Selfie");
+    front.AddSynonym("Forward");
+
+    var rear = new VoiceInteractor.PickOptionRequest.Option("Rear Camera", 1);
+    rear.AddSynonym("Rear");
+    rear.AddSynonym("Back");
+    rear.AddSynonym("Normal");
+
+    var prompt = new VoiceInteractor.Prompt("Which camera would you like to use?");
+    request = new CameraChoiceRequest(prompt, new [] { front, rear }, new [] {buttonFront, buttonRear});
+
+
+    VoiceInteractor.SubmitRequest(request);
+        
+}
+
+        class ConfirmTaxiRequest : VoiceInteractor.ConfirmationRequest
         {
-            base.OnResume();
-            if (!IsVoiceInteraction)
-                return;
+            public ConfirmTaxiRequest(VoiceInteractor.Prompt prompt) 
+                :base(prompt, null)
+            {
+            }
+            public override void OnConfirmationResult(bool confirmed, Bundle result)
+            {
+                base.OnConfirmationResult(confirmed, result);
+                if (confirmed)
+                {
+                    //Finalize taxi confiramation
+                    Toast.MakeText(Activity, "Your taxi has been confirmed.", ToastLength.Long).Show();
+                }
+                else
+                {
+                    //Finalize taxi confiramation
+                    Toast.MakeText(Activity, "Your taxi has been confirmed.", ToastLength.Long).Show();
+                }
 
-            //Send our our first request asking for front or rear facing camera to use.
-            var front = new VoiceInteractor.PickOptionRequest.Option("Front Camera", 0);
-            front.AddSynonym("Front");
-            front.AddSynonym("Selfie");
-            front.AddSynonym("Forward");
+                Activity.Finish();
+            }
 
-            var rear = new VoiceInteractor.PickOptionRequest.Option("Rear Camera", 1);
-            rear.AddSynonym("Rear");
-            rear.AddSynonym("Back");
-            rear.AddSynonym("Normal");
-
-            var prompt = new VoiceInteractor.Prompt("Which camera would you like to use?");
-            request = new CameraChoiceRequest(prompt, new [] { front, rear }, new [] {buttonFront, buttonRear});
-
-
-            VoiceInteractor.SubmitRequest(request);
-                
+            public override void OnCancel()
+            {
+                base.OnCancel();
+                Activity.Finish();
+            }
         }
 
         protected class CameraChoiceRequest : VoiceInteractor.PickOptionRequest
