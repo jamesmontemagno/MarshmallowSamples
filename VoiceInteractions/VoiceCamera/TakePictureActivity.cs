@@ -18,8 +18,8 @@ using Android.Util;
 namespace VoiceCamera
 {
     [Activity(Label = "Voice Camera", LaunchMode = Android.Content.PM.LaunchMode.SingleTop)]  
-    [IntentFilter(new []{MediaStore.ActionImageCapture}, Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
-    [IntentFilter(new []{MediaStore.ActionImageCaptureSecure}, Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
+    [IntentFilter(new []{MediaStore.IntentActionStillImageCamera}, Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
+    [IntentFilter(new []{MediaStore.IntentActionStillImageCameraSecure}, Categories = new []{Intent.CategoryDefault, Intent.CategoryVoice})]
     public class VoiceActivity : BaseActivity
     {
 
