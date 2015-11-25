@@ -65,13 +65,13 @@ namespace VoiceCamera
           RequestPermissions(Permissions, RequestLocationId); 
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, int[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             switch (requestCode)
             {
                 case RequestLocationId:
                     {
-                        bool hasAllPermissions = grantResults.Where(r => r == (int)Permission.Denied).Count() == 0;
+                        bool hasAllPermissions = grantResults.Where(r => r == Permission.Denied).Count() == 0;
 
                         if (!hasAllPermissions)
                             Toast.MakeText(this, "Unable to get all required permissions", ToastLength.Long).Show();
